@@ -3,4 +3,23 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="next">SIGUIENTE</string>
+    <string name="skip">OMITIR</string>
+    <string name="start">COMENZAR</string>
+
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="first_name_university">Politecnico Colombiano</string>
+    <string name="last_name_university">Jaime isaza Cadavid</string>
+
+    <string name="slide_1_title">Conoce!</string>
+    <string name="slide_1_desc">Podras ver las rutas de buses que te pueden servir en el momento!</string>
+
+    <string name="slide_2_title">Tu Camino!</string>
+    <string name="slide_2_desc">Veras que camino podras tomar para llegar a tu destino!</string>
+
+    <string name="slide_3_title">Rutas favoritas!</string>
+    <string name="slide_3_desc">Tendras la opción de elegir que rutas usas mas!</string>
 </resources>
