@@ -1,4 +1,4 @@
-package util.pjic.com.utilidadespjic;
+package util.pjic.com.utilidadespjic.ui.activities;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -20,7 +20,9 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class IntroductionActivity extends AppCompatActivity {
+import util.pjic.com.utilidadespjic.R;
+
+public class  IntroductionActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;

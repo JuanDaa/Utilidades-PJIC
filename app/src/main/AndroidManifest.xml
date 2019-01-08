@@ -10,11 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".UtilActivity"
-            android:label="@string/app_name" />
-        <activity android:name=".IntroductionActivity" />
+            android:name=".ui.activities.UtilActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".ui.activities.IntroductionActivity" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".ui.activities.WelcomeActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
