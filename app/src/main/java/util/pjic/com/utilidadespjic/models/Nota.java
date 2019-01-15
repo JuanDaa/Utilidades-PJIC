@@ -5,11 +5,6 @@ public class Nota {
     float note;
     float percentage;
 
-    public Nota(float note, float percentage) {
-        this.note = note;
-        this.percentage = percentage;
-    }
-
     public float getNote() {
         return note;
     }

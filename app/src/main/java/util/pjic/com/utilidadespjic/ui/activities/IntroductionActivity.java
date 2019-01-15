@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.support.design.widget.AppBarLayout;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
@@ -19,7 +20,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
+import util.pjic.com.utilidadespjic.MainActivity;
 import util.pjic.com.utilidadespjic.R;
 
 public class  IntroductionActivity extends AppCompatActivity {
@@ -30,6 +33,7 @@ public class  IntroductionActivity extends AppCompatActivity {
     private int[] layouts;
     private Button btnSkip, btnNext;
     //private PrefManager prefManager;
+    private AppBarLayout f6323r;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +83,7 @@ public class  IntroductionActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(current);
                 } else {
                     //prefManager.mostrarIntroduccion(false);
-                    startActivity(new Intent(getApplicationContext(), UtilActivity.class));
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }
             }
@@ -116,14 +120,14 @@ public class  IntroductionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                        // prefManager.mostrarIntroduccion(false);
-                        startActivity(new Intent(getApplicationContext(), UtilActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
                     }
                 }).setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //prefManager.mostrarIntroduccion(true);
-                startActivity(new Intent(getApplicationContext(), UtilActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
             }
         }).create().show();

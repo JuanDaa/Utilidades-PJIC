@@ -27,14 +27,14 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.Myvistaholder>
 
     @Override
     public Myvistaholder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new Myvistaholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.listaNotasRecycler,null));
+        return new Myvistaholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_notas_recycler,null));
     }
 
     @Override
     public void onBindViewHolder(Myvistaholder holder,final int position) {
 
-        holder.note.setText((int) nota.get(position).getNote());
-        holder.percentage.setText((int) nota.get(position).getPercentage());
+        holder.note.setText(String.valueOf((int) nota.get(position).getNote()));
+        holder.percentage.setText(String.valueOf((int) nota.get(position).getPercentage()));
 
 
 
