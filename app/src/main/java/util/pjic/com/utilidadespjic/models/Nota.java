@@ -2,22 +2,22 @@ package util.pjic.com.utilidadespjic.models;
 
 public class Nota {
 
-    float note;
-    float percentage;
+    Float note;
+    Float percentage;
 
-    public float getNote() {
+    public Float getNote() {
         return note;
     }
 
-    public void setNote(float note) {
+    public void setNote(Float note) {
         this.note = note;
     }
 
-    public float getPercentage() {
+    public Float getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(float percentage) {
+    public void setPercentage(Float percentage) {
         this.percentage = percentage;
     }
 

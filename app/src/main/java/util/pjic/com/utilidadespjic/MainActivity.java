@@ -1,6 +1,8 @@
 package util.pjic.com.utilidadespjic;
 
+import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         recyclerView = findViewById(R.id.listaNotas);
+        recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
         notaAdapter = new NotaAdapter(this, notas);
         final Nota nota = new Nota();
-        nota.setNote(4);
-        nota.setPercentage(4);
+        nota.setNote(null);
+        nota.setPercentage(null);
         notas.add(nota);
         textView = findViewById(R.id.textView5);
         recyclerView.setAdapter(notaAdapter);
@@ -47,9 +49,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 for (Nota nota : notas) {
-                   total = nota.getNote() * nota.getPercentage();
+                    if (nota.getNote() == null || nota.getPercentage() == null) {
+                        return;
+                    }
+                    float percentage = nota.getPercentage() / 100;
+                    total += percentage * (nota.getNote());
                 }
-                textView.setText(String.valueOf((int) total));
+                textView.setText(String.valueOf((total)));
+                total = 0;
             }
         });
 
@@ -57,8 +64,49 @@ public class MainActivity extends AppCompatActivity {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                notas.add(new Nota());
-                notaAdapter.notifyDataSetChanged();
+                boolean isInvalid = false;
+                float percentageTotal = 0;
+                for (Nota notaValid : notas) {
+                    if (notaValid.getNote() == null || notaValid.getPercentage() == null) {
+                        isInvalid = true;
+                    } else if (notaValid.getNote() == 0.0 || notaValid.getPercentage() == 0.0) {
+                        isInvalid = true;
+                    }
+
+                    if (notaValid.getPercentage() != null) {
+                        percentageTotal += notaValid.getPercentage();
+                    }
+                }
+
+                if (isInvalid) {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                    dialog.setMessage("Debes llenar todos los campos para poder añadir uno nuevo");
+                    dialog.setPositiveButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface arg0, int arg1) {
+                                          return;
+                                        }
+                                    });
+                    dialog.create().show();
+                } else {
+                    if (percentageTotal > 100) {
+                        AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                        dialog.setMessage("Error: la suma de los porcentajes no debe ser mayor a 100");
+                        dialog.setPositiveButton("OK",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface arg0, int arg1) {
+                                        return;
+                                    }
+                                });
+                        dialog.create().show();
+                        return;
+                    } else {
+                        notas.add(new Nota());
+                        notaAdapter.notifyDataSetChanged();
+                    }
+                }
             }
         });
     }
