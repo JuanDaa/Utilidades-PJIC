@@ -1,6 +1,7 @@
 package util.pjic.com.utilidadespjic.adapters;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -20,40 +21,39 @@ import util.pjic.com.utilidadespjic.R;
 import util.pjic.com.utilidadespjic.models.Nota;
 
 /**
- * Created by emine on 25/08/2016.
+ * Created by me on 25/08/2016.
  */
 public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.Myvistaholder>{
 
     private Context contexto;
     private ArrayList<Nota> nota;
-    private String[] noteAdd;
-    private String[] parameterAdd;
 
     public NotaAdapter(Context contexto, ArrayList<Nota> nota) {
         this.contexto = contexto;
         this.nota = nota;
     }
 
+    @NonNull
     @Override
-    public Myvistaholder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new Myvistaholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_notas_recycler,null));
+    public Myvistaholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new Myvistaholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_notas_recycler, null));
     }
 
     @Override
-    public void onBindViewHolder(Myvistaholder holder,final int position) {
+    public void onBindViewHolder(@NonNull Myvistaholder holder, final int position) {
+        if (holder.getAdapterPosition() == 0) {
+            holder. closeButtonCalculate.setVisibility(View.INVISIBLE);
+        }
 
         holder.note.setText(String.valueOf(nota.get(position).getNote() == null ? "" : nota.get(position).getNote()));
         holder.percentage.setText(String.valueOf(nota.get(position).getPercentage() == null ? "" : (nota.get(position).getPercentage())));
 
-        holder.closeButtonCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nota.remove(holder.getAdapterPosition());
-                notifyItemRemoved(holder.getAdapterPosition());
-                notifyItemRangeChanged(holder.getAdapterPosition(),nota.size());
+        holder.closeButtonCalculate.setOnClickListener(v -> {
+            nota.remove(holder.getAdapterPosition());
+            notifyItemRemoved(holder.getAdapterPosition());
+            notifyItemRangeChanged(holder.getAdapterPosition(), nota.size());
 
-                Toast.makeText(contexto,"Removido con exito",Toast.LENGTH_SHORT).show();
-            }
+            Toast.makeText(contexto, "Removido con exito", Toast.LENGTH_SHORT).show();
         });
 
         holder.note.addTextChangedListener(new TextWatcher() {
@@ -117,12 +117,12 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.Myvistaholder>
         return nota.size();
     }
 
-    public class Myvistaholder extends RecyclerView.ViewHolder {
+    class Myvistaholder extends RecyclerView.ViewHolder {
 
         EditText note,percentage;
         ImageButton closeButtonCalculate;
 
-        public Myvistaholder(final View itemView) {
+        Myvistaholder(final View itemView) {
             super(itemView);
             note = itemView.findViewById(R.id.note);
             percentage = itemView.findViewById(R.id.percent);
@@ -130,34 +130,4 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.Myvistaholder>
         }
 
     }
-
-    public class InputFilterMinMax implements InputFilter {
-        private int min, max;
-
-        public InputFilterMinMax(int min, int max) {
-            this.min = min;
-            this.max = max;
-        }
-
-        public InputFilterMinMax(String min, String max) {
-            this.min = Integer.parseInt(min);
-            this.max = Integer.parseInt(max);
-        }
-
-        @Override
-        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-            try {
-                int input = Integer.parseInt(dest.toString() + source.toString());
-                if (isInRange(min, max, input))
-                    return null;
-            } catch (NumberFormatException nfe) { }
-            return "";
-        }
-
-        private boolean isInRange(int a, int b, int c) {
-            return b > a ? c >= a && c <= b : c >= b && c <= a;
-        }
-
-    }
-
 }
