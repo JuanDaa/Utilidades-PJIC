@@ -5,9 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 
-import util.pjic.com.utilidadespjic.MainActivity;
 import util.pjic.com.utilidadespjic.R;
-import util.pjic.com.utilidadespjic.utils.PrefManager;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -28,7 +26,7 @@ public class WelcomeActivity extends AppCompatActivity {
                // if (prefManager.seMostraraIntro() == true && prefManager.seMostraraSesion() == true) {
                     startActivity(new Intent(WelcomeActivity.this, IntroductionActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
                // }else if (prefManager.seMostraraIntro() == false && prefManager.seMostraraSesion() == false) {
-                  //  startActivity(new Intent(WelcomeActivity.this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                  //  startActivity(new Intent(WelcomeActivity.this, CalculateNotesActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK));
               //  }
             }
         }, 3000);

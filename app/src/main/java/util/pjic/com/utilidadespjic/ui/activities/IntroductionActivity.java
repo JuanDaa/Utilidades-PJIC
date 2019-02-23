@@ -20,9 +20,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toolbar;
 
-import util.pjic.com.utilidadespjic.MainActivity;
+import util.pjic.com.utilidadespjic.DashboardActivity;
 import util.pjic.com.utilidadespjic.R;
 
 public class  IntroductionActivity extends AppCompatActivity {
@@ -83,7 +82,7 @@ public class  IntroductionActivity extends AppCompatActivity {
                     viewPager.setCurrentItem(current);
                 } else {
                     //prefManager.mostrarIntroduccion(false);
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                     finish();
                 }
             }
@@ -120,14 +119,14 @@ public class  IntroductionActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                        // prefManager.mostrarIntroduccion(false);
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                         finish();
                     }
                 }).setPositiveButton("Sí", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //prefManager.mostrarIntroduccion(true);
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
                 finish();
             }
         }).create().show();

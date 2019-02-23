@@ -36,15 +36,18 @@ public class NotaAdapter extends RecyclerView.Adapter<NotaAdapter.Myvistaholder>
     @NonNull
     @Override
     public Myvistaholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new Myvistaholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_notas_recycler, null));
+        Myvistaholder holder = new Myvistaholder(LayoutInflater.from(parent.getContext()).inflate(R.layout.lista_notas_recycler, null));
+        if (holder.getAdapterPosition() <= 0) {
+            holder.closeButtonCalculate.setVisibility(View.INVISIBLE);
+        }
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull Myvistaholder holder, final int position) {
-        if (holder.getAdapterPosition() == 0) {
-            holder. closeButtonCalculate.setVisibility(View.INVISIBLE);
+        if (holder.getAdapterPosition() >  0) {
+            holder.closeButtonCalculate.setVisibility(View.VISIBLE);
         }
-
         holder.note.setText(String.valueOf(nota.get(position).getNote() == null ? "" : nota.get(position).getNote()));
         holder.percentage.setText(String.valueOf(nota.get(position).getPercentage() == null ? "" : (nota.get(position).getPercentage())));
 

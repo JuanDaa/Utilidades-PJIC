@@ -23,4 +23,5 @@
     <string name="slide_3_title">Rutas favoritas!</string>
     <string name="slide_3_desc">Tendras la opción de elegir que rutas usas mas!</string>
     <string name="recent_news">applab</string>
+    <string name="title_activity_poli_map">Map</string>
 </resources>

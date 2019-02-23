@@ -1,7 +1,6 @@
-package util.pjic.com.utilidadespjic;
+package util.pjic.com.utilidadespjic.ui.activities;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
@@ -10,24 +9,20 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
-import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+import util.pjic.com.utilidadespjic.R;
 import util.pjic.com.utilidadespjic.adapters.NotaAdapter;
 import util.pjic.com.utilidadespjic.models.Nota;
 
-public class MainActivity extends AppCompatActivity {
+public class CalculateNotesActivity extends AppCompatActivity {
 
     private NotaAdapter notaAdapter;
     private ArrayList<Nota> notas = new ArrayList<>();
@@ -36,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_calculate_note);
 
         RecyclerView recyclerView = findViewById(R.id.listaNotas);
         recyclerView.setHasFixedSize(false);
@@ -126,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if (isInvalid) {
-                AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder dialog = new AlertDialog.Builder(CalculateNotesActivity.this);
                 dialog.setMessage("Debes llenar todos los campos para poder añadir uno nuevo");
                 dialog.setPositiveButton("OK",
                         (arg0, arg1) -> {
@@ -135,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.create().show();
             } else {
                 if (percentageTotal > 100) {
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(MainActivity.this);
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(CalculateNotesActivity.this);
                     dialog.setMessage("Error: la suma de los porcentajes no debe ser mayor a 100");
                     dialog.setPositiveButton("OK",
                             (arg0, arg1) -> {
@@ -151,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openCalculateDialog(int imageToView, String messaget, String messageR) {
-        dialogCalculate = new Dialog(MainActivity.this);
+        dialogCalculate = new Dialog(CalculateNotesActivity.this);
         dialogCalculate.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogCalculate.setContentView(R.layout.calculate_note_dialog);
 
